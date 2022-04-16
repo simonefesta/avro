@@ -148,7 +148,7 @@
         <artifactId>build-helper-maven-plugin</artifactId>
         <executions>
 <!--       <execution>
-            <!--
+           
               Special-purpose maven plugins that generate code usually add the generated sources into the project.
               But because the general-purpose exec plugin above generated code, we need to manually add the generated sources.
     
