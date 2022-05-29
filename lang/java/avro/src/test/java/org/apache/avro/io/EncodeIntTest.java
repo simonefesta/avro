@@ -31,7 +31,8 @@ public class EncodeIntTest {
     return Arrays.asList(new Object[][] {
         // category partition
         // expected //n //buf //pos
-        { 1, 1, new byte[5], 1 }, { 0, -1, new byte[5], -1 }, { 0, 0, new byte[0], 0 }
+        { 0, -1, new byte[5], -1 }, { 0, 0, new byte[0], 0 }, { 1, 1, new byte[5], 1 }, { 2, 128, new byte[5], 0 },
+        { 3, 131072, new byte[5], 0 }, { 4, 1048576, new byte[5], 0 }, { 5, 1900000000, new byte[5], 0 }
 
     });
 
