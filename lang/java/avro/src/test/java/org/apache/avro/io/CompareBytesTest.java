@@ -42,6 +42,7 @@ public class CompareBytesTest {
 
   }
 
+
   @Test
   public void TestCompare() {
     int actual;
