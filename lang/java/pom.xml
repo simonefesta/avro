@@ -157,10 +157,10 @@
             </archive>
           </configuration>
         </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <!-- Tale config ritorna la coverage di jacoco al 0%
+        <!-- Tale config ritorna la coverage di jacoco al 0% -->
+       <!--<plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-surefire-plugin</artifactId>
           <configuration> -->
           <!--  <includes> -->
               <!-- Avro naming convention for JUnit tests -->
@@ -191,8 +191,8 @@
           <!--  <redirectTestOutputToFile>true</redirectTestOutputToFile>
             <failIfNoTests>false</failIfNoTests>
             <argLine>-Xmx1000m</argLine>
-          </configuration> -->
-        </plugin>
+          </configuration>
+        </plugin>-->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
@@ -428,7 +428,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
+            <!--<configuration>
               <includes>
                 <include>**/DataFileInteropTest*</include>
               </includes>
@@ -441,7 +441,7 @@
               <systemPropertyVariables>
                 <test.dir>../../../build/interop/data/</test.dir>
               </systemPropertyVariables>
-            </configuration>
+            </configuration> -->
           </plugin>
         </plugins>
       </build>

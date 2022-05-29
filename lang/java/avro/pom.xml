@@ -222,11 +222,9 @@
         <activeByDefault>false</activeByDefault>
       </activation>
       <properties>
-        <!-- Use a stable version istead of SNAPSHOT one -->
         <ba-dua.version>0.6.0</ba-dua.version>
         <argLine>-javaagent:target/dependency/ba-dua-agent-rt-${ba-dua.version}-all.jar -Doutput.file=target/badua.ser</argLine>
       </properties>
-      <!-- Needed for generate the report -->
       <dependencies>
         <dependency>
           <groupId>br.usp.each.saeg</groupId>
@@ -237,7 +235,6 @@
       <build>
         <plugins>
 
-          <!-- Copy ba-dua-agent-rt from .m2 directory to target/dependency -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
@@ -288,6 +285,50 @@
             </executions>
           </plugin>
 
+        </plugins>
+      </build>
+    </profile>
+
+
+    <profile>
+      <id>mutation</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <withHistory>true</withHistory>
+        <pitest.version>1.8.0</pitest.version>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>${pitest.version}</version>
+            <configuration>
+              <targetClasses>
+                <param>org.apache.avro.io.BinaryData</param>
+               <!-- <param>org.apache.avro.specific.SpecificData</param> -->
+              </targetClasses>
+              <targetTests>
+                <param>org.apache.avro.io.CompareBytesTest</param>
+                <param>org.apache.avro.io.EncodeIntTest</param>
+
+              </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>org.slf4j</avoidCallsTo>
+              </avoidCallsTo>
+            </configuration>
+            <executions>
+              <execution>
+                <id>Mutation report</id>
+                <phase>test-compile</phase>
+                <goals>
+                  <goal>mutationCoverage</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
