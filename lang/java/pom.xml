@@ -79,17 +79,17 @@
     <module>avro</module>
     <module>compiler</module>
     <module>maven-plugin</module>
-    <module>ipc</module>
+    <!--<module>ipc</module>-->
     <module>ipc-jetty</module>
     <module>ipc-netty</module>
     <module>trevni</module>
     <module>tools</module>
-    <module>mapred</module>
+    <!--<module>mapred</module>-->
     <module>protobuf</module>
     <module>thrift</module>
     <module>archetypes</module>
-    <module>grpc</module>
-    <module>integration-test</module>
+    <!--<module>grpc</module>
+    <module>integration-test</module>-->
     <module>perf</module>
     <module>avro-jacoco</module>
   </modules>
@@ -162,23 +162,24 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <configuration>
-            <includes>
+          <!-- Tale config ritorna la coverage di jacoco al 0%
+          <configuration> -->
+          <!--  <includes> -->
               <!-- Avro naming convention for JUnit tests -->
-              <include>**/Test**</include>
-            </includes>
-            <excludes>
+           <!--   <include>**/Test**</include> -->
+           <!-- </includes> -->
+          <!--  <excludes> -->
               <!-- A few innner classes are not to be tested -->
-              <exclude>**/*$*</exclude>
+             <!-- <exclude>**/*$*</exclude> -->
               <!-- exclude the generated classes under apache.avro.test, some of
                 these match **/Test** and are not JUnit tests -->
-              <exclude>**/apache/avro/test/**</exclude>
-            </excludes>
+           <!--   <exclude>**/apache/avro/test/**</exclude> -->
+           <!-- </excludes>
             <enableAssertions>false</enableAssertions>
             <trimStackTrace>false</trimStackTrace>
             <runOrder>random</runOrder>
             <parallel>all</parallel>
-            <useUnlimitedThreads>true</useUnlimitedThreads>
+            <useUnlimitedThreads>true</useUnlimitedThreads> -->
             <!--<perCoreThreadCount>true</perCoreThreadCount>-->
 
             <!-- TestSpecificCompiler instantiates a Java compiler to test output results,
@@ -186,13 +187,13 @@
                  This may cause problems on some platforms.
                  See https://maven.apache.org/plugins/maven-surefire-plugin/examples/class-loading.html
                  for more information. -->
-            <useManifestOnlyJar>false</useManifestOnlyJar>
+           <!-- <useManifestOnlyJar>false</useManifestOnlyJar> -->
             <!-- configures unit test standard error and standard out to go to a file per test
                  rather than the console. -->
-            <redirectTestOutputToFile>true</redirectTestOutputToFile>
+          <!--  <redirectTestOutputToFile>true</redirectTestOutputToFile>
             <failIfNoTests>false</failIfNoTests>
             <argLine>-Xmx1000m</argLine>
-          </configuration>
+          </configuration> -->
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -498,6 +499,7 @@
               </execution>
             </executions>
           </plugin>
+
         </plugins>
       </build>
     </profile>
