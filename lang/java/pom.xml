@@ -67,6 +67,11 @@
     <file-management.version>3.0.0</file-management.version>
     <javacc-plugin.version>3.0.3</javacc-plugin.version>
     <javacc.version>7.0.10</javacc.version>
+
+
+    <!-- jacoco aggregate -->
+    <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/lang/java/test-jacoco/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+
   </properties>
 
   <modules>
@@ -86,6 +91,7 @@
     <module>grpc</module>
     <module>integration-test</module>
     <module>perf</module>
+    <module>avro-jacoco</module>
   </modules>
 
   <build>
@@ -471,6 +477,33 @@
         <hadoop.version>2.10.1</hadoop.version>
       </properties>
     </profile>
+
+
+    <profile>
+      <id>coverage</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>prepare-agent</id>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+
+
   </profiles>
 
   <!-- dependencyManagement can be used to define dependency versions, scopes, and
