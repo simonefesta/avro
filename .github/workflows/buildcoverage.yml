@@ -1,4 +1,4 @@
-name: Maven SonarCloud
+name: Apache Avro - Jacoco
 on:
   push:
     branches:
