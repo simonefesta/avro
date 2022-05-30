@@ -42,6 +42,9 @@ public class CompareBytesTest {
         { 1, new byte[10], 1, 1, new byte[10], 0, 0 }, // questo nuovo 'test' copre il caso in cui b2 sia più grande di
                                                        // b1, infatti nei test precedenti mi aspettavo sempre expected
                                                        // <=0
+        // pit
+        { -1, "testb1".getBytes(), 1, 4, "testb2".getBytes(), 1, 5 },
+        { 1, "testb1".getBytes(), 1, 5, "testb2".getBytes(), 1, 4 }
 
     });
 

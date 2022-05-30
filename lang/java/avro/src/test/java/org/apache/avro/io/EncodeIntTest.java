@@ -32,7 +32,10 @@ public class EncodeIntTest {
         // category partition
         // expected //n //buf //pos
         { 0, -1, new byte[5], -1 }, { 0, 0, new byte[0], 0 }, { 1, 1, new byte[5], 1 }, { 2, 128, new byte[5], 0 },
-        { 3, 131072, new byte[5], 0 }, { 4, 1048576, new byte[5], 0 }, { 5, 1900000000, new byte[5], 0 }
+        // coverage
+        { 3, 131072, new byte[5], 0 }, { 4, 1048576, new byte[5], 0 }, { 5, 1900000000, new byte[5], 0 },
+        // pitest
+        { 2, 8191, new byte[10], 0 }, { 3, 1048448, new byte[10], 0 }, { 4, 134201344, new byte[10], 0 }
 
     });
 
@@ -44,7 +47,6 @@ public class EncodeIntTest {
     try {
       actual = BinaryData.encodeInt(n, buf, pos);
 
-      System.out.println(actual);
     } catch (Exception e) {
       actual = 0;
     }
