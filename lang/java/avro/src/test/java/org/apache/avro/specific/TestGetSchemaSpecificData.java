@@ -42,16 +42,14 @@ public class TestGetSchemaSpecificData {
         { Schema.Type.FLOAT, Float.class }, { Schema.Type.DOUBLE, Double.class }, { Schema.Type.STRING, String.class },
         { AvroTypeException.class, null }, { Schema.Type.BYTES, ByteBuffer.class },
         { Schema.Type.ARRAY, TestGetSchemaSpecificData.class.getDeclaredField("array").getGenericType() }, // tipi di
-                                                                                                           // dati
-                                                                                                           // complessi
+        // dati
+        // complessi
         { Schema.Type.MAP, TestGetSchemaSpecificData.class.getDeclaredField("map").getGenericType() },
-
-        { AvroRuntimeException.class, java.io.IOException.class }, { Schema.Type.NULL, Void.class } });
-
+        { AvroRuntimeException.class, java.io.IOException.class }, { Schema.Type.NULL, Void.class }, });
   }
 
   @Test
-  public void testGetSchemaName() {
+  public void testGetSchema() {
     Schema.Type actual;
     try {
       actual = SpecificData.get().getSchema(type).getType();

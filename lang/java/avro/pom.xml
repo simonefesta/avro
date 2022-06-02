@@ -308,11 +308,14 @@
             <configuration>
               <targetClasses>
                 <param>org.apache.avro.io.BinaryData</param>
-               <!-- <param>org.apache.avro.specific.SpecificData</param> -->
+               <param>org.apache.avro.specific.SpecificData</param>
               </targetClasses>
               <targetTests>
-                <param>org.apache.avro.io.CompareBytesTest</param>
-                <param>org.apache.avro.io.EncodeIntTest</param>
+                <param>org.apache.avro.io.CompareBytesBinaryDataTest</param>
+                <param>org.apache.avro.io.EncodeIntBinaryDataTest</param>
+
+                <param>org.apache.avro.specific.TestGetSchemaNameSpecificData</param>
+                <param>org.apache.avro.specific.TestGetSchemaSpecificData</param>
 
               </targetTests>
               <avoidCallsTo>

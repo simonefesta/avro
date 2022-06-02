@@ -9,14 +9,14 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class CompareBytesTest {
+public class CompareBytesBinaryDataTest {
 
   private byte[] b1, b2; // bytes to compare
   private int s1, s2; // start of byte to compare
   private int l1, l2; // lenght of byte[]
   private int expected;
 
-  public CompareBytesTest(int expected, byte[] b1, int s1, int l1, byte[] b2, int s2, int l2) {
+  public CompareBytesBinaryDataTest(int expected, byte[] b1, int s1, int l1, byte[] b2, int s2, int l2) {
     configure(expected, b1, s1, l1, b2, s2, l2);
   }
 
@@ -36,7 +36,7 @@ public class CompareBytesTest {
         // category partition
         // expected //b1 //s1 //l1 //b2 //s2 //l2
         { 0, new byte[0], 0, 0, new byte[0], 0, 0 }, { 0, new byte[1], 0, -1, new byte[1], 0, -1 },
-        { -1, "testb1".getBytes(), 1, 6, "testb2".getBytes(), 1, 6 },
+        { -1, "testb1".getBytes(), 1, 6, "testb2".getBytes(), 1, 6 }, { -10, "testb2".getBytes(), 1, 6, null, 5, 6 },
 
         // coverage
         { 1, new byte[10], 1, 1, new byte[10], 0, 0 }, // questo nuovo 'test' copre il caso in cui b2 sia più grande di
@@ -51,10 +51,14 @@ public class CompareBytesTest {
   }
 
   @Test
-  public void TestCompare() {
-    int actual;
-    actual = BinaryData.compareBytes(b1, s1, l1, b2, s2, l2);
-    Assert.assertEquals(expected, actual);
+  public void testCompareBytes() {
+    int actual = -10;
+    try {
+      actual = BinaryData.compareBytes(b1, s1, l1, b2, s2, l2);
+      Assert.assertEquals(expected, actual);
+    } catch (Exception e) {
+      Assert.assertEquals(expected, actual);
+    }
 
   }
 

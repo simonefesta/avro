@@ -9,13 +9,13 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class EncodeIntTest {
+public class EncodeIntBinaryDataTest {
 
   private byte[] buf; // dove scrivo
   private int n, pos; // quanto scrivo, e partendo da dove
   private int expected; // quanto ho scritto effettivamente
 
-  public EncodeIntTest(int expected, int n, byte[] buf, int pos) {
+  public EncodeIntBinaryDataTest(int expected, int n, byte[] buf, int pos) {
     configure(expected, n, buf, pos);
   }
 
@@ -42,7 +42,7 @@ public class EncodeIntTest {
   }
 
   @Test
-  public void TestCompare() {
+  public void testEncodeInt() {
     int actual;
     try {
       actual = BinaryData.encodeInt(n, buf, pos);
