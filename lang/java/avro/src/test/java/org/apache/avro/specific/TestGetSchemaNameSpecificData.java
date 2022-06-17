@@ -20,7 +20,7 @@ public class TestGetSchemaNameSpecificData {
     configure(expected, obj);
   }
 
-  private void configure(Object expected, Object obj) {
+  public void configure(Object expected, Object obj) {
     this.expected = expected;
     this.obj = obj;
   }

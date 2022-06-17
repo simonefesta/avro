@@ -15,12 +15,17 @@ public class CompareBytesBinaryDataTest {
   private int s1, s2; // start of byte to compare
   private int l1, l2; // lenght of byte[]
   private int expected;
+  public static final int ERRORVALUE = -10; // CompareBytes ritorna un int. Definiamo ERRORVALUE come il valore di int
+                                            // che definisce l'errore nell'esecuzione del metodo.
+  // Se da un test che reputiamo corretto ci aspettiamo un risultato uguale
+  // all'int scelto per errorvalue, devo cambiare errorvalue, che viene usato solo
+  // per expected errors.
 
   public CompareBytesBinaryDataTest(int expected, byte[] b1, int s1, int l1, byte[] b2, int s2, int l2) {
     configure(expected, b1, s1, l1, b2, s2, l2);
   }
 
-  private void configure(int expected, byte[] b1, int s1, int l1, byte[] b2, int s2, int l2) {
+  public void configure(int expected, byte[] b1, int s1, int l1, byte[] b2, int s2, int l2) {
     this.expected = expected;
     this.b1 = b1;
     this.b2 = b2;
@@ -37,6 +42,7 @@ public class CompareBytesBinaryDataTest {
         // expected //b1 //s1 //l1 //b2 //s2 //l2
         { 0, new byte[0], 0, 0, new byte[0], 0, 0 }, { 0, new byte[1], 0, -1, new byte[1], 0, -1 },
         { -1, "testb1".getBytes(), 1, 6, "testb2".getBytes(), 1, 6 }, { -10, "testb2".getBytes(), 1, 6, null, 5, 6 },
+        { -10, null, 1, 6, null, 5, 6 },
 
         // coverage
         { 1, new byte[10], 1, 1, new byte[10], 0, 0 }, // questo nuovo 'test' copre il caso in cui b2 sia più grande di
@@ -52,7 +58,7 @@ public class CompareBytesBinaryDataTest {
 
   @Test
   public void testCompareBytes() {
-    int actual = -10;
+    int actual = ERRORVALUE;
     try {
       actual = BinaryData.compareBytes(b1, s1, l1, b2, s2, l2);
       Assert.assertEquals(expected, actual);

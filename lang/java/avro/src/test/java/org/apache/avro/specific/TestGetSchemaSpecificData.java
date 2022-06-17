@@ -30,7 +30,7 @@ public class TestGetSchemaSpecificData {
     configure(expected, type);
   }
 
-  private void configure(Object expected, java.lang.reflect.Type type) {
+  public void configure(Object expected, java.lang.reflect.Type type) {
     this.expected = expected;
     this.type = type;
   }
@@ -40,10 +40,10 @@ public class TestGetSchemaSpecificData {
 
     return Arrays.asList(new Object[][] { { Schema.Type.INT, Integer.class }, { Schema.Type.BOOLEAN, Boolean.class },
         { Schema.Type.FLOAT, Float.class }, { Schema.Type.DOUBLE, Double.class }, { Schema.Type.STRING, String.class },
-        { AvroTypeException.class, null }, { Schema.Type.BYTES, ByteBuffer.class },
-        { Schema.Type.ARRAY, TestGetSchemaSpecificData.class.getDeclaredField("array").getGenericType() }, // tipi di
+        { AvroTypeException.class, null }, { Schema.Type.BYTES, ByteBuffer.class }, // tipi di
         // dati
         // complessi
+        { Schema.Type.ARRAY, TestGetSchemaSpecificData.class.getDeclaredField("array").getGenericType() },
         { Schema.Type.MAP, TestGetSchemaSpecificData.class.getDeclaredField("map").getGenericType() },
         { AvroRuntimeException.class, java.io.IOException.class }, { Schema.Type.NULL, Void.class }, });
   }

@@ -19,7 +19,7 @@ public class EncodeIntBinaryDataTest {
     configure(expected, n, buf, pos);
   }
 
-  private void configure(int expected, int n, byte[] buf, int pos) {
+  public void configure(int expected, int n, byte[] buf, int pos) {
     this.expected = expected;
     this.n = n;
     this.buf = buf;
