@@ -15,8 +15,8 @@ public class CompareBytesBinaryDataTest {
   private int s1, s2; // start of byte to compare
   private int l1, l2; // lenght of byte[]
   private int expected;
-  public static final int ERRORVALUE = -10; // CompareBytes ritorna un int. Definiamo ERRORVALUE come il valore di int
-                                            // che definisce l'errore nell'esecuzione del metodo.
+  public static final int ERRORVALUE = -100; // CompareBytes ritorna un int. Definiamo ERRORVALUE come il valore di int
+                                             // che definisce l'errore nell'esecuzione del metodo.
   // Se da un test che reputiamo corretto ci aspettiamo un risultato uguale
   // all'int scelto per errorvalue, devo cambiare errorvalue, che viene usato solo
   // per expected errors.
@@ -40,17 +40,20 @@ public class CompareBytesBinaryDataTest {
     return Arrays.asList(new Object[][] {
         // category partition
         // expected //b1 //s1 //l1 //b2 //s2 //l2
-        { 0, new byte[0], 0, 0, new byte[0], 0, 0 }, { 0, new byte[1], 0, -1, new byte[1], 0, -1 },
-        { -1, "testb1".getBytes(), 1, 6, "testb2".getBytes(), 1, 6 }, { -10, "testb2".getBytes(), 1, 6, null, 5, 6 },
-        { -10, null, 1, 6, null, 5, 6 },
+        { 0, new byte[0], 0, 0, new byte[0], 0, 0 }, { 0, new byte[0], -1, -1, new byte[0], -1, -1 },
+        { -1, "testb1".getBytes(), 0, 6, "testb2".getBytes(), 0, 6 },
+        { ERRORVALUE, "testb1".getBytes(), 7, 6, "testb2".getBytes(), 7, 6 },
+        { ERRORVALUE, "testb2".getBytes(), 0, 6, null, 0, 1 }, { ERRORVALUE, null, 1, 1, null, 5, 6 },
 
         // coverage
-        { 1, new byte[10], 1, 1, new byte[10], 0, 0 }, // questo nuovo 'test' copre il caso in cui b2 sia più grande di
-                                                       // b1, infatti nei test precedenti mi aspettavo sempre expected
-                                                       // <=0
+        { 1, "testb1".getBytes(), 0, 6, "testb0".getBytes(), 0, 6 }, // questo nuovo 'test' copre il caso in cui b1 sia
+                                                                     // più grande di
+        // b2, infatti nei test precedenti mi aspettavo sempre expected
+        // <=0
         // pit
-        { -1, "testb1".getBytes(), 1, 4, "testb2".getBytes(), 1, 5 },
-        { 1, "testb1".getBytes(), 1, 5, "testb2".getBytes(), 1, 4 }
+        { -1, "testb1".getBytes(), 1, 4, "testb2".getBytes(), 1, 5 }, // fix mutation on return
+        { -1, "testc1".getBytes(), 0, 6, "testc15".getBytes(), 0, 7 }, // fix mutation on for cycle #1
+        { 1, "testc15".getBytes(), 0, 7, "testc1".getBytes(), 0, 6 } // fix mutation on for cycle #2
 
     });
 
